@@ -1,15 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import React from 'react'
+
+import "./index.css"
+
+import XflowComponent from '@/components/XflowComponents/index'
 
 function App() {
 
 
   return (
     <>
-     1111
+      <div className="text-rose-500 text-3xl font-bold underline w-10 h-10">
+        Hello world
+      </div>
+      <XflowComponent />
     </>
   )
 }
