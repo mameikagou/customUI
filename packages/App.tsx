@@ -1,7 +1,7 @@
 
 import "./index.css"
 
-import XflowMain from '@/components/XflowComponents/index'
+import XflowMain from '@/components/Xflow/index'
 
 function App() {
 
