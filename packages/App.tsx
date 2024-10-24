@@ -1,7 +1,8 @@
 
 import "./index.css"
 
-import XflowMain from '@/components/Xflow/index'
+import XflowMain from '@/ui-components/Xflow'
+import AnimateTest from '@/animate/test' 
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
   return (
     <>
       <XflowMain />
+      <AnimateTest />
     </>
   )
 }

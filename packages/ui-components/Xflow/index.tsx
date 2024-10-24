@@ -1,4 +1,4 @@
-import XflowComponents from "@/components/Xflow/test/index"
+import XflowComponents from "@/ui-components/Xflow/test"
 
 export default function XflowMain() {
   return (
