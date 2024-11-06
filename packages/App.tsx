@@ -1,18 +1,19 @@
+import "./index.css";
 
-import "./index.css"
-
-import XflowMain from '@/ui-components/Xflow'
-import AnimateTest from '@/animate/test' 
+import XflowMain from "@/ui-components/Xflow";
+import AnimateTest from "@/animate/test";
+import WebSocketDemo from "@/ahooks/useWebSocket/demo/demo1";
 
 function App() {
-
-
   return (
     <>
-      <XflowMain />
-      <AnimateTest />
+      {/* <XflowMain />
+      <AnimateTest /> */}
+      {/* <div className="h-[80vh] flex justify-center items-center">
+        <WebSocketDemo />
+      </div> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
