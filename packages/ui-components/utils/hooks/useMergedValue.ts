@@ -28,6 +28,7 @@ export default function useMergedProps<T>(
         }
 
         // 后续再考虑使用usePrevious来解决react18严格模式的问题
+        // 通过重新赋值value来实现切换
         if (value === undefined) {
             setState(value);
         }
