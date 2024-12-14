@@ -9,6 +9,7 @@
     },
     "dependencies": {
         "@customui/components": "workspace:*",
+        "@customui/jotai":"workspace:*",
         "@arco-design/web-react": "2.62.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
