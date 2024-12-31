@@ -15,7 +15,7 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "jsx": "react-jsx",
+        "jsx": "preserve", // 这个修改解决了找不到 react/jsx-runtime 模块的问题，因为现在 TypeScript 不会尝试转换 JSX，而是将这个工作交给了构建工具链
         /* Linting */
         "strict": true,
         "noUnusedLocals": false,
@@ -31,7 +31,6 @@
         /* Type Checking */
         "types": [
             "jest",
-            "@testing-library/jest-dom"
         ],
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,

@@ -1,16 +1,19 @@
-
 import "./index.css";
-import { Table } from "@customui/components/Table";
+import { Table } from "@customui/components/Table/demo";
+import AtomDemo from "@/JotaiDemo/atomDemo";
 function App() {
   return (
     <>
-      {/* <XflowMain />
-      <AnimateTest /> */}
+      {
+        /* <XflowMain />
+      <AnimateTest /> */
+      }
       <div className="flex justify-center">
         {/* <WebSocketDemo /> */}
         {/* <Radio /> */}
         {/* <Table /> */}
-        <span>111</span>
+        {/* <AtomDemo></AtomDemo> */}
+        <Table />
       </div>
     </>
   );

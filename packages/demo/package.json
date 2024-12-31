@@ -9,17 +9,17 @@
     },
     "dependencies": {
         "@customui/components": "workspace:*",
-        "@customui/jotai":"workspace:*",
+        "@customui/jotai": "workspace:*",
         "@arco-design/web-react": "2.62.0",
+        "react-router-dom": "^6.27.0",
         "react": "^18.3.1",
-        "react-dom": "^18.3.1",
-        "react-router-dom": "^6.27.0"
+        "react-dom": "^18.3.1"
     },
     "devDependencies": {
         "@rsbuild/core": "^1.0.18",
         "@rsbuild/plugin-react": "^1.0.5",
-        "@types/react": "^18.3.10",
-        "@types/react-dom": "^18.3.0",
+        "@types/react": "^18.3.1",
+        "@types/react-dom": "^18.3.1",
         "autoprefixer": "^10.4.20",
         "postcss": "^8.4.47",
         "tailwindcss": "^3.4.14",
