@@ -1,3 +1,4 @@
+import React from "react";
 
 type FieldValues = Record<string, any>;
 // 存储每个dom引用的ref
@@ -6,6 +7,25 @@ type FieldRefs = Record<string, {ref:any}>
 // 所有的数据都在这个闭包里面，然后通过对外暴露的方法去实现更改。
 // 所有表单相关的数据都放在这里面。
 // 与框架无关。
+
+const createSubject = () => {
+    const subscribers = new Set<(value: any)=>void>();
+    // 订阅
+    const subscribe=(callback:any):()=>void=>{
+        subscribers.add(callback);
+        return () => subscribers.delete(callback);
+    }
+    // 发布
+    const next=(value: any)=>{
+        subscribers.forEach(callback => {
+            return callback(value);
+        });
+    }
+    return {
+        subscribe,
+        next
+    }
+}
 
 export function createFormControl() {
     const _fields: FieldRefs = {};
@@ -18,8 +38,16 @@ export function createFormControl() {
         // ... 其他状态，我们后面再加
     };
 
+    const _subjects = {
+        state:createSubject(),
+    }
+
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) =>{
+        const { name, value } = event.target; // 获取<input> 元素的真实dom节点
+        _formValues[name] = value;
+    }
+
     // 注册函数
-    // 
     const register = (name: string) => {
         if (!_fields[name]) {
             _fields[name] = { ref: null };
@@ -38,7 +66,8 @@ export function createFormControl() {
                     // _fields.firstName.ref.focus()
                     _fields[name].ref = element;
                 }
-            }
+            },
+            onChange, // 把change事件的值存入到闭包中。
         }
     }
 
