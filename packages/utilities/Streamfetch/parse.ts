@@ -21,7 +21,7 @@ export async function* getLines(stream: ReadableStream<Uint8Array>) {
         // 接口的 read() 方法返回一个 Promise，这个 promise 提供流的内部队列中下一个分块（以供访问）。
         const { value, done } = await reader.read();
         if (done) {
-            if (lineBuffer.length >= 0) {
+            if (lineBuffer.length > 0) {
                 yield lineBuffer;
             }
             break;
@@ -35,7 +35,8 @@ export async function* getLines(stream: ReadableStream<Uint8Array>) {
             // 截取到第一个换行符
             const line = lineBuffer.slice(0, eolIndex);
             // 删除掉被截取的内容
-            lineBuffer = lineBuffer.slice(eolIndex + 1);
+            lineBuffer = lineBuffer.slice(eolIndex + 1); // 这里的+1，就是为了消掉一个\n，剩下一个\n；
+            // 以便在下一次循环中通过lineBuffer.indexOf('\n')再消掉一个\n, 就变成了空字符串，方便后续通过if (line === "") 判断
             // 从这里开始就获取到了完整的一行
             yield line; // 暂停函数的执行，请求下一个值的时候会继续执行
         }
@@ -50,7 +51,10 @@ export async function* getMessages(lines: AsyncIterable<string>) {
 
     // 消费异步迭代器的标准语法。
     for await (const line of lines) {
-        if (line === "") {
+        if (line === "") { // 识别 “\n\n” - 分块符号
+            // 这里写的很巧妙，如果是\n\n的话，那么经过getLines处理，就会剩下一个\n
+            // 然后再次运行循环，就会变成空行。就是在这里识别\n\n的。
+            // 
             if (Object.keys(currentMessage).length > 0) {
                 yield {
                     id: currentMessage.id || '', // id
